@@ -1,16 +1,18 @@
-const MONGODB_URI = process.env.MONGODB_URI
+const config = require('../utils/config')
 const mongoose = require('mongoose')
 const carParkService = require('./carPark')
 const CarPark = require('../models/carPark')
 const CAR_LOT_TYPE = 'C'
 
+console.log('connecting to MongoDB')
+
 const connect = () => {
-  mongoose.connect(MONGODB_URI)
+  mongoose.connect(config.MONGODB_URI)
     .then(() => {
-      console.log('connecting to MongoDB')
+      console.log('connected to MongoDB')
     })
     .catch(error => {
-      console.log('error connecting to MongoDB:', error)
+      console.log('error connecting to MongoDB:', error.message)
     })
   }
 

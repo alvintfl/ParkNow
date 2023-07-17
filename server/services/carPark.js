@@ -1,5 +1,5 @@
 const axios = require('axios')
-const API_URL = process.env.API_URL
+const API_URL = 'http://datamall2.mytransport.sg/ltaodataservice/CarParkAvailabilityv2'
 const API_KEY = process.env.API_KEY
 
 const createConfig = () => {

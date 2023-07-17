@@ -3,7 +3,7 @@ const CarPark = ({ carPark }) => {
 
   return (
     <div>
-      codex: {code}
+      code: {code}
       available lots: {availableLots}
     </div>
   )

@@ -1,10 +1,8 @@
 const carParkRouter = require('express').Router()
+const CarPark = require('../models/carPark')
 
 carParkRouter.get('/:id', async (request, response) => {
-  const carPark = {
-    "code": 1,
-    "availableLots": 1000
-  }
+  const carPark = await CarPark.findOne({ id: request.params.id}) 
   response.json(carPark)
 })
 

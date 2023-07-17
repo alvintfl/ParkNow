@@ -1,9 +1,16 @@
 const CarPark = ({ carPark }) => {
-  const { code, availableLots } = carPark
+  if (!carPark) {
+    return (
+      <div>
+        No matching car park found
+      </div>
+    )
+  }
 
+  const { id, availableLots } = carPark
   return (
     <div>
-      code: {code}
+      code: {id}
       available lots: {availableLots}
     </div>
   )

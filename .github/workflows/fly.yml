@@ -1,0 +1,45 @@
+name: Build and Deploy
+on:
+  push:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+      - name: Install dependencies
+        run: npm install    
+        working-directory: ./client
+      - name: Test
+        run: npm test
+        env:
+          CI: true
+        working-directory: ./client
+      - name: Generate build
+        run: npm run build
+        working-directory: ./client
+      # Share artifact inside workflow
+      - name: Share artifact inside workflow
+        uses: actions/upload-artifact@v1
+        with:
+          name: build
+          path: ./client/build
+  deploy:
+    name: Deploy app
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v3
+      - name: Get artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: build
+          path: ./server/build
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: flyctl deploy --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}

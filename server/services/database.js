@@ -3,16 +3,17 @@ const mongoose = require('mongoose')
 const carParkService = require('./carPark')
 const CarPark = require('../models/carPark')
 const CAR_LOT_TYPE = 'C'
+const logger = require('../utils/logger')
 
-console.log('connecting to MongoDB')
+logger.log('connecting to MongoDB')
 
 const connect = () => {
   mongoose.connect(config.MONGODB_URI)
     .then(() => {
-      console.log('connected to MongoDB')
+      logger.log('connected to MongoDB')
     })
     .catch(error => {
-      console.log('error connecting to MongoDB:', error.message)
+      logger.error('error connecting to MongoDB:', error.message)
     })
   }
 

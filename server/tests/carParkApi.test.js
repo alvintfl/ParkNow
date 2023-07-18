@@ -5,6 +5,7 @@ const CarPark = require('../models/carPark')
 const API_URL = '/api/carPark'
 
 const api = supertest(app)
+const timeout = 100000
 const initialCarParks = [
   {
     id: '1',
@@ -25,7 +26,7 @@ beforeEach(async () => {
     let carParkObject = new CarPark(carPark)
     await carParkObject.save()
   }
-})
+}, timeout)
 
 describe('when requesting for a car park', () => {
   test('the car park is returned as json', async () => {

@@ -6,6 +6,7 @@ const API_URL = '/api/carPark'
 
 const api = supertest(app)
 const timeout = 100000
+mongoose.set('bufferTimeoutMS', timeout)
 const initialCarParks = [
   {
     id: '1',

@@ -6,7 +6,9 @@ const databaseService = require('./services/database')
 const middleware = require('./utils/middleware')
 
 databaseService.connect()
-databaseService.update()
+if (process.env.NODE_ENV !== 'test') {
+  databaseService.update()
+}
 
 app.use(cors())
 app.use(express.static('build'))

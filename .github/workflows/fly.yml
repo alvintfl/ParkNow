@@ -16,8 +16,6 @@ jobs:
         working-directory: ./client
       - name: Test
         run: npm test
-        env:
-          CI: true
         working-directory: ./client
       - name: Generate build
         run: npm run build
@@ -34,6 +32,9 @@ jobs:
     needs: build
     steps:
       - uses: actions/checkout@v3
+      - name: Test
+        run: npm run test
+        working-directory: ./server
       - name: Get artifact
         uses: actions/download-artifact@v1
         with:

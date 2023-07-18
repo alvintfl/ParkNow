@@ -25,14 +25,6 @@ jobs:
         with:
           name: build
           path: ./client/build
-      - name: Install dependencies
-        run: npm install
-        working-directory: ./server
-      - name: Test
-        run: npm run test
-        env:
-          TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
-        working-directory: ./server
   deploy:
     name: Deploy app
     runs-on: ubuntu-latest

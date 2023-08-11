@@ -6,13 +6,17 @@ import CarPark from './CarPark'
 test('renders car park', () => {
   const carPark = {
     id: 1,
+    development: 'a',
     availableLots: 234
   }
 
   render(<CarPark carPark={carPark}/>)
 
-  const element = screen.getByText('code: 1available lots: 234')
-  expect(element).toBeDefined()
+  const locationElement = screen.getByText('Location: a')
+  expect(locationElement).toBeDefined()
+
+  const lotsElement = screen.getByText('Lots Available: 234')
+  expect(lotsElement).toBeDefined()
 })
 
 test('renders message when car park is not found', () => {

@@ -4,17 +4,25 @@ import SearchBar from './components/SearchBar'
 import carParkService from './services/carPark'
 
 const App = () => {
-  const [carPark, setCarPark] = useState({})
+  const [carParks, setCarParks] = useState([])
+  const [hasSearch, setHasSearch] = useState(false)
 
   const getCarPark = async (code) => {
-    const gottenCarPark = await carParkService.get(code)
-    setCarPark(gottenCarPark)
+    const gottenCarParks = await carParkService.get(code)
+    setCarParks(gottenCarParks)
+    setHasSearch(true)
   }
 
   return (
     <div>
       <SearchBar getCarPark={getCarPark}/>
-      <CarPark carPark={carPark}/>
+      {
+        carParks?.length
+          ? carParks.map(carPark => <CarPark key={carPark.id} carPark={carPark}/>)
+          : hasSearch
+            ? <CarPark />
+            : <></>
+      }
     </div>
   )
 }

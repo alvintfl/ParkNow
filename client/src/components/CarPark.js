@@ -7,11 +7,11 @@ const CarPark = ({ carPark }) => {
     )
   }
 
-  const { id, availableLots } = carPark
+  const { development, availableLots } = carPark
   return (
     <div>
-      code: {id}
-      available lots: {availableLots}
+      <span> Location: {development} </span>
+      <span> Lots Available: {availableLots} </span>
     </div>
   )
 }

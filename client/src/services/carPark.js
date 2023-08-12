@@ -1,11 +1,17 @@
 import axios from 'axios'
-const baseUrl = 'api/carPark'
+const carParkUrl = 'api/carPark'
+const timeUrl = 'api/time'
 
-const get = async (code) => {
-  const response = await axios.get(`${baseUrl}/${code}`)
+const getCarParks = async (code) => {
+  const response = await axios.get(`${carParkUrl}/${code}`)
   return response.data
 }
 
-const carParkService = { get }
+const getTime = async () => {
+  const response = await axios.get(timeUrl)
+  return response.data
+}
+
+const carParkService = { getCarParks, getTime }
 
 export default carParkService

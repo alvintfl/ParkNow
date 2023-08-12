@@ -15,7 +15,7 @@ const SearchBar = ({ getCarPark }) => {
         <input
           value={carParkCode}
           onChange={({ target }) => setCarParkCode(target.value)}
-          placeholder='Type the car park code here'
+          placeholder='Enter a location'
         />
       </form>
     </div>

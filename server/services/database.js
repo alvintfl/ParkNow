@@ -18,7 +18,7 @@ const connect = () => {
   }
 
 const update = async () => {
-  const data = await carParkService.get()
+  const data = await carParkService.getData()
   const values = data.value
   values
     .filter(value => value.LotType === CAR_LOT_TYPE)

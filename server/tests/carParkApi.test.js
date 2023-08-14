@@ -15,6 +15,11 @@ const initialCarParks = [
     id: '5',
     availableLots: 678,
     development: 'def'
+  },
+  {
+    id: '7',
+    availableLots: 999,
+    development: '~!@#$%^&*()_+{}[]|\;:"<>,.?/'
   }
 ]
 
@@ -36,13 +41,20 @@ describe('when requesting for a car park', () => {
   })
 
   test('the specific car park is returned', async () => {
-    const response = await api.get(`${API_URL}/1`)
-    expect(response.body).toEqual(initialCarParks[0])
+    const response = await api.get(`${API_URL}/abc`)
+    expect(response.body).toEqual([initialCarParks[0]])
   })
 
-  test('nothing is returned if the car park does not exist', async () => {
+  test('[] is returned if the car park does not exist', async () => {
     const response = await api.get(`${API_URL}/invalid`)
-    expect(response.body).toEqual(null)
+    expect(response.body).toEqual([])
+  })
+
+  test('special characters can be used', async () => {
+    const specialCharacters = '~!@#$%^&*()_+{}[]|\;:"<>,.?/'
+    const encoded = encodeURIComponent(specialCharacters)
+    const response = await api.get(`${API_URL}/${encoded}`)
+    expect(response.body).toEqual([initialCarParks[2]])
   })
 })
 

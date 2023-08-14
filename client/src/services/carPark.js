@@ -2,8 +2,9 @@ import axios from 'axios'
 const carParkUrl = 'api/carPark'
 const timeUrl = 'api/time'
 
-const getCarParks = async (code) => {
-  const response = await axios.get(`${carParkUrl}/${code}`)
+const getCarParks = async (location) => {
+  const encoded = encodeURIComponent(location)
+  const response = await axios.get(`${carParkUrl}/${encoded}`)
   return response.data
 }
 

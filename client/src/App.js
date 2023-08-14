@@ -21,7 +21,7 @@ const App = () => {
     setTime(timeData)
   }
 
-  useEffect(() => getTime, [])
+  useEffect(() => getTime(), [])
 
   return (
     <div>

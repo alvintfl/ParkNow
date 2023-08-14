@@ -10,7 +10,8 @@ const createConfig = () => {
 
 const getData = async () => {
   const response = await axios.get(API_URL, createConfig())
-  lastFetched = DateTime.now().toLocaleString(DateTime.DATETIME_MED)
+  const singaporeDateTime = DateTime.now().setZone('Asia/Singapore')
+  lastFetched = singaporeDateTime.toLocaleString(DateTime.DATETIME_MED)
   return response.data
 }
 

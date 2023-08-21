@@ -3,17 +3,18 @@ import { useState } from 'react'
 const SearchBar = ({ getCarPark }) => {
   const [carParkCode, setCarParkCode] = useState('')
 
-  const search = async (location) => {
-    getCarPark(location)
-    setCarParkCode(location)
+  const search = async (e) => {
+    e.preventDefault()
+    getCarPark(carParkCode)
+    setCarParkCode('')
   }
 
   return (
     <div>
-      <form onSubmit={e => e.preventDefault()}>
+      <form onSubmit={search}>
         <input
           value={carParkCode}
-          onChange={({ target }) => search(target.value)}
+          onChange={({ target }) => setCarParkCode(target.value)}
           placeholder='Enter a location'
         />
       </form>

@@ -1,10 +1,11 @@
-import { Button } from '@mui/material'
+import { IconButton } from '@mui/material'
+import SearchIcon from '@mui/icons-material/Search'
 
 const SearchButton = ({ search }) => {
   return (
-    <Button variant='contained' onClick={search}>
-      Search
-    </Button>
+    <IconButton onClick={search} >
+      <SearchIcon />
+    </IconButton>
   )
 }
 

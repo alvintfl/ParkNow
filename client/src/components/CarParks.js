@@ -1,9 +1,15 @@
 import { DataGrid } from '@mui/x-data-grid'
 import { Stack } from '@mui/material'
 
+const createColumn = (field, headerName, flex) => {
+  return {
+    field, headerName, flex, sortable: false
+  }
+}
+
 const columns = [
-  { field: 'development', headerName: 'Location', flex: 0.75 },
-  { field: 'availableLots', headerName: 'Available Lots', flex: 0.25 }
+  createColumn('development', 'Location', 0.75),
+  createColumn('availableLots', 'Available Lots', 0.25)
 ]
 
 const CarParks = ({ carParks }) => {
@@ -12,6 +18,16 @@ const CarParks = ({ carParks }) => {
       <DataGrid
         rows={carParks}
         columns={columns}
+        disableColumnMenu={true}
+        disableRowSelectionOnClick={true}
+        sx={{
+          '&.MuiDataGrid-root .MuiDataGrid-columnHeader:focus': {
+            outline: 'none !important',
+          },
+          '&.MuiDataGrid-root .MuiDataGrid-cell:focus-within': {
+            outline: 'none !important',
+          }
+        }}
         initialState={{
           pagination: {
             paginationModel: { pageSize: 5, page: 0 }

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { TextField } from '@mui/material'
 import SearchButton from './SearchButton'
 
 const SearchBar = ({ getCarPark }) => {
@@ -7,19 +8,17 @@ const SearchBar = ({ getCarPark }) => {
   const search = async (e) => {
     e.preventDefault()
     getCarPark(carParkCode)
-    setCarParkCode('')
   }
 
   return (
-    <div style={{ display: 'inline-block' }} >
-      <form onSubmit={search}> <input
-        value={carParkCode}
-        onChange={({ target }) => setCarParkCode(target.value)}
+    <form onSubmit={search}>
+      <TextField variant='outlined'
         placeholder='Enter a location'
+        onChange={({ target }) => setCarParkCode(target.value)}
+        size='small'
       />
       <SearchButton search={search} />
-      </form>
-    </div>
+    </form>
   )
 }
 

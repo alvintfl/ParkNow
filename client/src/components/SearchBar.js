@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { Paper, TextField, IconButton, InputAdornment } from '@mui/material'
-import ClearIcon from '@mui/icons-material/Clear'
+import { Paper, TextField, InputAdornment } from '@mui/material'
 import SearchButton from './SearchButton'
+import ClearButton from './ClearButton'
 
 const SearchBar = ({ getCarPark }) => {
   const [carParkCode, setCarParkCode] = useState('')
@@ -37,15 +37,7 @@ const SearchBar = ({ getCarPark }) => {
         InputProps={{
           endAdornment:
           <InputAdornment position='end'>
-            <IconButton
-              sx={{
-                visibility: carParkCode ? 'visible' : 'hidden'
-              }}
-              onClick={() => setCarParkCode('')}
-              type='reset'
-            >
-              <ClearIcon />
-            </IconButton>
+            <ClearButton input={carParkCode} handleClear={() => setCarParkCode('')} />
           </InputAdornment>
         }}
       />

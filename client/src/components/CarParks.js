@@ -1,19 +1,18 @@
 import { DataGrid } from '@mui/x-data-grid'
 import { Stack } from '@mui/material'
 
-const createColumn = (field, headerName, flex) => {
+const createColumn = (field, headerName, flex, headerClassName) => {
   return {
-    field, headerName, flex, sortable: false
+    field, headerName, flex, headerClassName, sortable: false
   }
 }
 
-const developmentColumn = createColumn('development', 'Location', 0.75)
+const developmentColumn = createColumn('development', 'Location', 0.75, 'header-borders header-color')
 developmentColumn.cellClassName = 'cell-borders'
-developmentColumn.headerClassName = 'cell-borders'
 
 const columns = [
   developmentColumn,
-  createColumn('availableLots', 'Available Lots', 0.25)
+  createColumn('availableLots', 'Available Lots', 0.25, 'header-color')
 ]
 
 const CarParks = ({ carParks }) => {
@@ -36,6 +35,13 @@ const CarParks = ({ carParks }) => {
           },
           '& .cell-borders': {
             borderRight: '1px solid #DEDEDE'
+          },
+          '& .header-borders': {
+            borderRight: '1px solid #42a5f5'
+          },
+          '& .header-color': {
+            backgroundColor: 'primary.light',
+            color: 'white'
           }
         }}
         initialState={{

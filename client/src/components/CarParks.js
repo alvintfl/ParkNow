@@ -1,43 +1,43 @@
 import { DataGrid } from '@mui/x-data-grid'
-import { Stack } from '@mui/material'
+import { CircularProgress, Stack } from '@mui/material'
 
-const createColumn = (field, headerName, flex, headerClassName) => {
-  return {
-    field, headerName, flex, headerClassName, sortable: false
+const CarParks = ({ carParks, isLoading }) => {
+  const createColumn = (field, headerName, flex, headerClassName) => {
+    return {
+      field, headerName, flex, headerClassName, sortable: false
+    }
   }
-}
 
-const developmentColumn = createColumn('development', 'Location', 0.75, 'header-borders header-color')
-developmentColumn.cellClassName = 'cell-borders'
+  const developmentColumn = createColumn('development', 'Location', 0.75, 'header-borders header-color')
+  developmentColumn.cellClassName = 'cell-borders'
 
-const columns = [
-  developmentColumn,
-  createColumn('availableLots', 'Available Lots', 0.25, 'header-color')
-]
+  const columns = [
+    developmentColumn,
+    createColumn('availableLots', 'Available Lots', 0.25, 'header-color')
+  ]
 
-const dataGridStyle = {
-  '& .MuiDataGrid-columnHeader:focus, .MuiDataGrid-cell:focus-within': {
-    outline: 'none !important',
-  },
-  '& .MuiDataGrid-iconSeparator': {
-    display: 'none',
-  },
-  '& .MuiDataGrid-cell': {
-    borderBottom: '1px solid #DEDEDE'
-  },
-  '& .cell-borders': {
-    borderRight: '1px solid #DEDEDE'
-  },
-  '& .header-borders': {
-    borderRight: '1px solid #42a5f5'
-  },
-  '& .header-color': {
-    backgroundColor: 'primary.light',
-    color: 'white'
+  const dataGridStyle = {
+    '& .MuiDataGrid-columnHeader:focus, .MuiDataGrid-cell:focus-within': {
+      outline: 'none !important',
+    },
+    '& .MuiDataGrid-iconSeparator': {
+      display: 'none',
+    },
+    '& .MuiDataGrid-cell': {
+      borderBottom: '1px solid #DEDEDE'
+    },
+    '& .cell-borders': {
+      borderRight: '1px solid #DEDEDE'
+    },
+    '& .header-borders': {
+      borderRight: '1px solid #42a5f5'
+    },
+    '& .header-color': {
+      backgroundColor: 'primary.light',
+      color: 'white'
+    }
   }
-}
 
-const CarParks = ({ carParks }) => {
   return (
     <div style={{ height: '23.5rem', width: '40rem' }}>
       <DataGrid
@@ -56,9 +56,20 @@ const CarParks = ({ carParks }) => {
             <Stack height="100%" alignItems="center" justifyContent="center">
               No matching car park found
             </Stack>
+          ),
+          loadingOverlay: () => (
+            <Stack
+              height="100%"
+              alignItems="center"
+              justifyContent="center"
+              sx={{ backdropFilter: 'blur(2px)' }}
+            >
+              <CircularProgress />
+            </Stack>
           )
         }}
         pageSizeOptions={[5, 10, 25]}
+        loading={isLoading}
       />
     </div>
   )

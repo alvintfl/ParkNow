@@ -7,10 +7,13 @@ import carParkService from './services/carPark'
 const App = () => {
   const [carParks, setCarParks] = useState([])
   const [time, setTime] = useState('')
+  const [isLoading, setIsLoading] = useState(true)
 
   const getCarPark = async (location) => {
+    setIsLoading(true)
     const carParkData = await carParkService.getCarParks(location)
     setCarParks(carParkData)
+    setIsLoading(false)
     getTime()
   }
 
@@ -28,7 +31,7 @@ const App = () => {
       <h2 style={{ fontFamily: 'Helvetica', color: '#42a5f5' }}>Singapore Car Park Lots Availability</h2>
       <Time time={time} />
       <SearchBar getCarPark={getCarPark}/>
-      <CarParks carParks={carParks} />
+      <CarParks carParks={carParks} isLoading={isLoading} />
     </div>
   )
 }

@@ -15,6 +15,28 @@ const columns = [
   createColumn('availableLots', 'Available Lots', 0.25, 'header-color')
 ]
 
+const dataGridStyle = {
+  '& .MuiDataGrid-columnHeader:focus, .MuiDataGrid-cell:focus-within': {
+    outline: 'none !important',
+  },
+  '& .MuiDataGrid-iconSeparator': {
+    display: 'none',
+  },
+  '& .MuiDataGrid-cell': {
+    borderBottom: '1px solid #DEDEDE'
+  },
+  '& .cell-borders': {
+    borderRight: '1px solid #DEDEDE'
+  },
+  '& .header-borders': {
+    borderRight: '1px solid #42a5f5'
+  },
+  '& .header-color': {
+    backgroundColor: 'primary.light',
+    color: 'white'
+  }
+}
+
 const CarParks = ({ carParks }) => {
   return (
     <div style={{ height: '23.5rem', width: '40rem' }}>
@@ -23,27 +45,7 @@ const CarParks = ({ carParks }) => {
         columns={columns}
         disableColumnMenu={true}
         disableRowSelectionOnClick={true}
-        sx={{
-          '& .MuiDataGrid-columnHeader:focus, .MuiDataGrid-cell:focus-within': {
-            outline: 'none !important',
-          },
-          '& .MuiDataGrid-iconSeparator': {
-            display: 'none',
-          },
-          '& .MuiDataGrid-cell': {
-            borderBottom: '1px solid #DEDEDE'
-          },
-          '& .cell-borders': {
-            borderRight: '1px solid #DEDEDE'
-          },
-          '& .header-borders': {
-            borderRight: '1px solid #42a5f5'
-          },
-          '& .header-color': {
-            backgroundColor: 'primary.light',
-            color: 'white'
-          }
-        }}
+        sx={dataGridStyle}
         initialState={{
           pagination: {
             paginationModel: { pageSize: 5, page: 0 }

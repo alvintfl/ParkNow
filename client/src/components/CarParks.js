@@ -7,8 +7,12 @@ const createColumn = (field, headerName, flex) => {
   }
 }
 
+const developmentColumn = createColumn('development', 'Location', 0.75)
+developmentColumn.cellClassName = 'cell-borders'
+developmentColumn.headerClassName = 'cell-borders'
+
 const columns = [
-  createColumn('development', 'Location', 0.75),
+  developmentColumn,
   createColumn('availableLots', 'Available Lots', 0.25)
 ]
 
@@ -21,11 +25,17 @@ const CarParks = ({ carParks }) => {
         disableColumnMenu={true}
         disableRowSelectionOnClick={true}
         sx={{
-          '&.MuiDataGrid-root .MuiDataGrid-columnHeader:focus': {
+          '& .MuiDataGrid-columnHeader:focus, .MuiDataGrid-cell:focus-within': {
             outline: 'none !important',
           },
-          '&.MuiDataGrid-root .MuiDataGrid-cell:focus-within': {
-            outline: 'none !important',
+          '& .MuiDataGrid-iconSeparator': {
+            display: 'none',
+          },
+          '& .MuiDataGrid-cell': {
+            borderBottom: '1px solid #DEDEDE'
+          },
+          '& .cell-borders': {
+            borderRight: '1px solid #DEDEDE'
           }
         }}
         initialState={{

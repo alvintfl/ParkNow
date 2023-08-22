@@ -32,6 +32,9 @@ const App = () => {
       <Time time={time} />
       <SearchBar getCarPark={getCarPark}/>
       <CarParks carParks={carParks} isLoading={isLoading} />
+      <div style={{ marginTop: '1rem' }}>
+        Based on <a href='https://datamall.lta.gov.sg/content/datamall/en.html'>data</a> from the Land Transport Authority
+      </div>
     </div>
   )
 }

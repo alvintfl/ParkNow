@@ -2,7 +2,7 @@
 
 ParkNow is a website that allows users to search for car park lots availability around Singapore. 
 
-The website is available [here](https://parknow.fly.dev/). The data used is provided by LTA's Carpark Availability API.
+The website is available [here](https://parknow.fly.dev/). The [data](https://datamall.lta.gov.sg/content/datamall/en.html) used is provided by LTA's Carpark Availability API.
 
 ## Run the application locally
 

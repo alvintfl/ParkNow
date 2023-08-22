@@ -25,6 +25,7 @@ const App = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <h2 style={{ fontFamily: 'Helvetica', color: '#42a5f5' }}>Singapore Car Park Lots Availability</h2>
       <Time time={time} />
       <SearchBar getCarPark={getCarPark}/>
       <CarParks carParks={carParks} />
